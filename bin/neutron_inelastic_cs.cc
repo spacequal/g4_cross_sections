@@ -143,7 +143,7 @@ int main(int argc, char **argv) {
 	if(a.clobber) { cout << "OVERWRITE ACTIVE" << endl; }
 	for(int i= 0; i< a.nargs; i++) { cout << "\t" << a.args[i] << endl; }
 
-	//Canvas
+	//Draw the result
 	TCanvas *c= new TCanvas("c1", "c1");
 	TGraph *g= new TGraph(n_pts, E, cs);
 	g->GetXaxis()->SetTitle("Energy [MeV]");
