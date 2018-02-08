@@ -39,7 +39,7 @@ using namespace std;
 static char doc[]     = "GEANT4 Fluorescence Data Check\n\n"
                         "Author: Branden Allen\n"
                         "Date  : 2018.01.06 (First Commit)\n\n"
-                        "Example command: ./cs_plot -Z 20"
+                        "Example command: ./fluo_data -Z 20"
 								"\n\n";
 static char args_doc[]= "Maximum Input Elements (100)";
 
@@ -95,8 +95,8 @@ int main(int argc, char **argv) {
 	a.clobber      = 0                    ;
 	a.last_elim    = false                ;
 	a.ofile        = NULL                 ;
-	a.A            = 6                    ;   //Default C-14
-	a.Z            = 14                   ;
+	a.A            = 14                   ;   //Default C-14
+	a.Z            = 6                    ;
 	memset(a.elim, 0, 3*sizeof(double));
 
 	//Parse input arguments

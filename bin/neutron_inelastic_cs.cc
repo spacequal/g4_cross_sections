@@ -39,7 +39,7 @@ using namespace std;
 static char doc[]     = "ROOT (CERN) Plots of Cross Sections from GEANT4\n\n"
                         "Author: Branden Allen\n"
                         "Date  : 2018.01.05 (First Commit)\n\n"
-                        "Example command: ./cs_plot --energy 0.1 100.0 0.01 -o output_file.png"
+                        "Example command: ./neutron_inelastic_cs --energy 0.1 100.0 0.01 -o output_file.png"
 								"--clobber Cu W\n\n";
 static char args_doc[]= "Maximum Input Elements (100)";
 
@@ -144,14 +144,14 @@ int main(int argc, char **argv) {
 	for(int i= 0; i< a.nargs; i++) { cout << "\t" << a.args[i] << endl; }
 
 	//Draw the result
-	TCanvas *c= new TCanvas("c1", "c1");
-	TGraph *g= new TGraph(n_pts, E, cs);
-	g->GetXaxis()->SetTitle("Energy [MeV]");
-	g->GetYaxis()->SetTitle("Cross Section [mb]");
-	g->SetTitle("Neutron Inelastic Scattering Cross Section");
-	g->Draw();
-//	c->SetLogy();
-	c->SaveAs(a.ofile);
+	TCanvas *ca= new TCanvas("c1", "c1");
+	TGraph *gr= new TGraph(n_pts, E, cs);
+	gr->GetXaxis()->SetTitle("Energy [MeV]");
+	gr->GetYaxis()->SetTitle("Cross Section [mb]");
+	gr->SetTitle("Neutron Inelastic Scattering Cross Section");
+	gr->Draw();
+//	ca->SetLogy();
+	ca->SaveAs(a.ofile);
 
 	//Exit
 	free(E); free(cs);
