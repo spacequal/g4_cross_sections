@@ -38,25 +38,24 @@ Date  : 2018.01.05
 using namespace std;
 
 //Input Option Documentation
-static char doc[]     = "GEANT4 Fluorescence Data Check\n\n"
+static char doc[]     = "GEANT4 Radionuclide Decay Data\n"
+								"Returns decay data for a selected radionuclide\n"
+								"Default Output: C-14\n\n"
                         "Author: Branden Allen\n"
                         "Date  : 2018.01.06 (First Commit)\n\n"
-                        "Example command: ./fluo_data -Z 20"
+                        "Example command (Cs-137): ./decay_table -Z 55 -A 137"
 								"\n\n";
-static char args_doc[]= "Maximum Input Elements (100)";
+static char args_doc[]= "";
 
 static struct argp_option options[]= {
-	{"energy"        , 'e', "ENERGY_BINS", 0, "Energy Bins [MeV]"    },
-	{"ofile"         , 'o', "OUTPUT_FILE", 0, "Output Image File"    },
 	{"Proton Number" , 'Z', "PROTON_NUM" , 0, "Proton Number"        },
 	{"Atomic Number" , 'A', "ATOMIC_NUM" , 0, "Atomic Number"        },
-	{"clobber"       ,   2, 0            , 0, "Overwrite Old File"   },
 	{0}
 };
 
 struct args {
-	char *args[MAX_ARGS];
-	int nargs;
+//	char *args[MAX_ARGS];
+//	int nargs;
 
 	double elim[3];            //Input energy limits
 	int nelim;                 //Number of read elements
@@ -79,11 +78,11 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 		case 'A':
 			a->A= atoi(arg);
 			break;
-		case ARGP_KEY_ARG:
+//		case ARGP_KEY_ARG:
 			//Standard Argument Retrieval
-			if(state->arg_num>= MAX_ARGS) argp_usage(state);
-			a->args[a->nargs++]= arg;
-			break;
+//			if(state->arg_num>= MAX_ARGS) argp_usage(state);
+//			a->args[a->nargs++]= arg;
+//			break;
 		case ARGP_KEY_END:
 			break;
 		default:
@@ -95,12 +94,8 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
 int main(int argc, char **argv) {
 	//Default Argument Values
 	struct args a;
-	for(int i= 0; i< MAX_ARGS; i++) { a.args[i]= 0x0; }
-	a.nargs        = 0                    ;
-	a.nelim        = 0                    ;
-	a.clobber      = 0                    ;
-	a.last_elim    = false                ;
-	a.ofile        = NULL                 ;
+//	for(int i= 0; i< MAX_ARGS; i++) { a.args[i]= 0x0; }
+//	a.nargs        = 0                    ;
 	a.A            = 14                   ;   //Default C-14
 	a.Z            = 6                    ;
 	memset(a.elim, 0, 3*sizeof(double));
